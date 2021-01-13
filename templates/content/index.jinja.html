@@ -1,0 +1,52 @@
+{% extends 'base.jinja.html' %}
+{% block content %}
+
+<div class="row">
+  <div class="col col-xs-2"></div>
+  <div class="col col-xs-8">
+    <h1 class="text-center">
+      TOTP Demonstration
+    </h1>
+    <p class="lead text-center">
+      Time-based One Time Password
+    </p>
+    <hr />
+    <p class="lead">
+      Read the specification of the TOTP algorithm <a href="https://tools.ietf.org/html/rfc6238">here</a>. It helps to have a deeper understanding of the theory if you can spare the time.
+    </p>
+    <p class="lead">
+      In short, we can get a TOTP from the algorithm (where time_step is typically 30, and digits is typically 6):
+    </p>
+    <pre><code>
+      time_counter = ⌊ unixtime(now) - unixtime(epoch_start) / time_step ⌋
+      TOTP = HOTP(secret_key, time_counter)
+      TOTP_value = TOTP % 10<sup>digits</sup>
+    </code></pre>
+    <p class="lead">
+      HOTP stands for HMAC-based One-time Password Algorithm where HMAC in turn stands for Hash-based Message Authentication Code. HMAC basically uses hashing algorithms to verify the <i>authenticity</i> and <i>integrity</i> of a message. A message is sent along with a HMAC_SHA256 hash, for instance, and the receiver of the message and hash checks that the message matches depending on some <i>shared key</i>:
+    </p>
+    <pre><code>
+      HMAC(hash_function, secret_key, message)
+    </code></pre>
+    <p class="lead">
+      So how does TOTP work in a modern sense? The service you are using for 2FA, for instance, needs to securely send the client some shared secret key. For instance, you can simply use the string: <code>service_url + current_user.username</code> and send this via HTTPS to the client. Might want to choose something less guessable, though; perhaps use AES and some service-wide key to encrypt?
+    </p>
+    <p class="lead">
+      And that's it. An application will use the algorithm to generate some string of length 4 to 9 which is sent to the server. The server should then run the algorithm itself and verify that the TOTP matches what the client sent.
+    </p>
+    <p class="lead">
+      So, knowing this, what do you want to do now?
+    </p>
+    <ul class="lead">
+      <li>
+        <a href="/security">Tell me about security implications.</a>
+      </li>
+      <li>
+        <a href="/demo">Show me TOTP in action.</a>
+      </li>
+    </ul>
+    <hr />
+  </div>
+</div>
+
+{% endblock %}

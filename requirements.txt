@@ -1,0 +1,10 @@
+gunicorn>=19.0.0
+Flask>=0.12
+Flask-HTMLmin>=1.2
+Flask-Compressor>=0.2.0
+uwsgi>=2.0.14
+cssmin>=0.2.0
+jsmin>=2.2.1
+pyyaml>=3.12
+Flask-Cache>=0.13.1
+pyotp>=2.2.6

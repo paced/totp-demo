@@ -1,0 +1,99 @@
+{% extends 'base.jinja.html' %}
+{% block content %}
+
+<div class="row">
+  <div class="col col-xs-2"></div>
+  <div class="col col-xs-8">
+    <h1 class="text-center">
+      TOTP Demonstration
+    </h1>
+    <p class="lead text-center">
+      What does TOTP look like?
+    </p>
+    <hr />
+    <p class="lead">
+      Adjust the form data to see how TOTP works in action. TOTP is generated using the Python Flask server. If you want to change some of the parameters, I suggest forking and changing them yourself to fit any/all suitable hashing algorithms. Click off the inputs to update the token.
+    </p>
+    <p class="lead">
+      You can verify the results yourself. If it doesn't work, simply change some of the values around to see exactly what happens when you change the inputs.
+    </p>
+    <div class="row">
+      <div class="col col-xs-2"></div>
+      <div class="col col-xs-8">
+        <h1 class="text-center" id="TOTPcode">
+          NaN
+        </h1>
+        <h3 class="text-center" id="progressLabel">
+          Calculating...
+        </h3>
+        <div class="progress">
+          <div class="progress-bar" id="progressBar"
+               role="progressbar">
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col col-xs-2"></div>
+          <div class="col col-xs-8">
+            <div class="form-group row">
+              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon">Secret Key</div>
+                <input type="text"
+                       class="form-control"
+                       name="key"
+                       id="key"
+                       value="any_string">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon">Length</div>
+                <input type="text"
+                       class="form-control"
+                       name="length"
+                       id="length"
+                       value="6">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon">Algorithm</div>
+                <select id="algo" name="algo" class="form-control">
+                  <option value="hmac_md5">HMAC_MD5</option>
+                  <option value="hmac_sha1">HMAC_SHA1</option>
+                  <option value="hmac_sha256">HMAC_SHA256</option>
+                  <option value="hmac_sha512">HMAC_SHA512</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon">Time Interval</div>
+                <input type="text"
+                       class="form-control"
+                       name="interval"
+                       id="interval"
+                       value="30">
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+    <ul class="lead">
+      <li>
+        <a href="/">Tell me about TOTP in general.</a>
+      </li>
+      <li>
+        <a href="/security">Tell me about security implications.</a>
+      </li>
+    </ul>
+    <hr />
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/gettotp.js') }}"></script>
+
+{% endblock %}

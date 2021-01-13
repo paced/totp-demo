@@ -1,0 +1,47 @@
+{% extends 'base.jinja.html' %}
+{% block content %}
+
+<div class="row">
+  <div class="col col-xs-2"></div>
+  <div class="col col-xs-8">
+    <h1 class="text-center">
+      TOTP Security
+    </h1>
+    <p class="lead text-center">
+      Where can TOTP fail?
+    </p>
+    <hr />
+    <p class="lead">
+      Let's cover how TOTP might fail us and how we might attack certain vulnerabilities specific to TOTP (adapted from <a href="https://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm" target="_blank">Wikipedia</a>). These are obviously not exclusive, just to give a bit of an overview:
+    </p>
+    <h2>
+      Phishing
+    </h2>
+    <p class="lead">
+      Create a simple phishing login page. The first step will simply store a username and password for long-term use. When a 2FA token is inputted, the server crafts an HTTP request with spoofed headers through a proxy such as Burp Suite (to get around CSRF tokens) twice to attempt a login. Phishing can fully compromise TOTP-based 2FA without any extra information from the service.
+    </p>
+    <h2>
+      Forgetting to Rate Limit
+    </h2>
+    <p class="lead">
+      Six digits and letters only mean there are exactly 1 million different combinations for a TOTP. Even a maximum security 1 billion combinations will be trivial to bruteforce without even a distributed network if a server is not rate limited. A simple Python script can utilise threading to break 2FA if the first factor (usually username+password) is known.
+    </p>
+    <h2>
+      Leaking the Shared Secret
+    </h2>
+    <p class="lead">
+      Hell, an attacker with the shared secret, knowledge of the message length, hashing algorithm, and time pad can generate arbitary passwords at will. Nearly all of these are set to their defaults anyway, which means the attacker just needs to guess HMAC_SHA256 or HMAC_SHA512 (generally) and they can bypass TOTP.
+    </p>
+    <ul class="lead">
+      <li>
+        <a href="/">Tell me about TOTP in general.</a>
+      </li>
+      <li>
+        <a href="/demo">Show me TOTP in action.</a>
+      </li>
+    </ul>
+    <hr />
+  </div>
+</div>
+
+{% endblock %}

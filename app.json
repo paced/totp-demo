@@ -1,0 +1,9 @@
+{
+  "name": "TOTPDemo",
+  "description": "Basic demonstration of TOTP.",
+  "image": "heroku/python",
+  "repository": "https://github.com/paced/totpdemo",
+  "keywords": ["python", "flask"],
+  "addons": [],
+  "environments": {}
+}

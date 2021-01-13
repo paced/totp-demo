@@ -1,0 +1,32 @@
+{% extends 'base.jinja.html' %}
+{% block content %}
+
+<div class="row">
+  <div class="col col-xs-2"></div>
+  <div class="col col-xs-8">
+    <h1 class="text-center">
+      Not Found
+    </h1>
+    <p class="lead text-center">
+      Might want to look elsewhere.
+    </p>
+    <hr />
+    <p class="lead">
+      For instance:
+    </p>
+    <ul class="lead">
+      <li>
+        <a href="/">Tell me about TOTP in general.</a>
+      </li>
+      <li>
+        <a href="/security">Tell me about security implications.</a>
+      </li>
+      <li>
+        <a href="/demo">Show me TOTP in action.</a>
+      </li>
+    </ul>
+    <hr />
+  </div>
+</div>
+
+{% endblock %}
