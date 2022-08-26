@@ -2,6 +2,11 @@
 
 Variable digit TOTP key visualiser for various hashing algorithms and given secrets.
 
+## Warning
+
+This is a repo I made while in university in 2017 and is, frankly, not very good. However, the information in the
+site is accurate and can run for free on Heroku, so here it is for an educational reference.
+
 ## Installation
 
 All you need to run this app:
@@ -19,7 +24,7 @@ python manage.py
 
 This will run the app on localhost:5000. You should edit the `manage.py` file to conform to your requirements.
 
-## Functionality
+## Features
 
 This application is fairly simple. You can give an hash algorithm, a secret, and length from 4 to 9 and the app will
 generate for you a time-based one time password (TOTP). The web app updates the screen with a timer when the TOTP
@@ -33,7 +38,7 @@ You can use this to test out how TOTP works, or as a simple checking tool. You c
 - **length**: Int, length of TOTP code. Should be between 4 and 9.
 - **algo**: String, name of the HMAC algorithm.
 
-## Google Cloud Platform
+## Deployment
 
 If you want to deploy to Heroku for some reason:
 
