@@ -47,4 +47,5 @@ heroku create
 git push heroku master
 ```
 
-My version is running [here](https://warm-tundra-47817.herokuapp.com/).
+As Heroku no longer has a free tier and this old project isn't _that_ worth sharing in my opinion, I've spun down
+the demo link. Still, Heroku deployment should still be possible!
